@@ -1,63 +1,111 @@
-# Secure Banking Application – Secure Coding Review
+# 🏦 Secure Bank Application – Python  
+### Secure Coding Review Project
 
-## Project Overview
-This project demonstrates a secure coding review of a console-based banking application.
-The goal is to identify insecure coding practices and fix them using secure coding principles.
-
-The application supports:
-- User login
-- Balance checking
-- Deposit
-- Withdrawal
-
-An insecure version was first analyzed, followed by a secure implementation.
+> A hands-on cybersecurity project demonstrating how insecure coding practices can expose financial applications—and how secure coding fixes them.
 
 ---
 
-## Insecure Coding Issues Identified
+## 🚀 Project Overview
 
-1. Plain text password storage
-2. Password visible during input
-3. No validation for deposit or withdrawal amounts
-4. Negative balance possibility
-5. Lack of proper authentication checks
+This project focuses on performing a **Secure Coding Review** on a Python-based banking application. It includes two implementations:
 
----
+- ❌ **Insecure Bank Application** – intentionally vulnerable
+- ✅ **Secure Bank Application** – hardened using industry best practices
 
-## Security Risks
-
-- Attackers can steal passwords if code or memory is exposed
-- Unauthorized users can gain access
-- Financial data can be manipulated
-- Application logic can be abused
+The objective is to identify security flaws, understand real-world risks, and apply secure coding techniques aligned with **OWASP Secure Coding Guidelines**.
 
 ---
 
-## Secure Fixes Implemented
+## 🎯 Objectives
 
-- Password hashing using SHA-256
-- Hidden password input
-- Input validation for all monetary operations
-- Authentication checks before sensitive actions
-- Controlled error messages to prevent information leakage
-
----
-
-## Files Included
-
-- `insecure_bank.py` – vulnerable implementation
-- `secure_bank.py` – secure and improved implementation
+- Perform a manual secure code review
+- Identify common security vulnerabilities
+- Implement secure authentication mechanisms
+- Enforce strict input validation
+- Apply session-based access control
+- Document findings in a professional format
 
 ---
 
-## Learning Outcomes
+## 🗂️ Project Structure
 
-- Understood common secure coding mistakes
-- Learned how to protect authentication logic
-- Applied input validation and access control
-- Gained hands-on experience in secure application design
+secure-bank-app/
+│
+├── insecure_bank.py # Vulnerable implementation (for learning purposes)
+├── secure_bank.py # Secure implementation (best practices applied)
+├── bank.log # Audit log file (generated at runtime)
+└── README.md # Project documentation
 
 ---
 
-## Disclaimer
-This project is for educational purposes only and demonstrates secure coding concepts.
+## 🔍 Insecure Application Overview (`insecure_bank.py`)
+
+The insecure version simulates common beginner-level and real-world mistakes that lead to serious security vulnerabilities.
+
+### ❌ Identified Issues
+
+- Plaintext password storage and comparison
+- Visible password input
+- Lack of input validation
+- No authentication checks for sensitive operations
+- No error handling
+- No logging or monitoring
+- Use of global variables for sensitive data
+
+⚠️ This version is strictly for learning and analysis purposes.
+
+---
+
+## 🛡️ Secure Application Overview (`secure_bank.py`)
+
+The secure version addresses all vulnerabilities and follows secure-by-design principles.
+
+### ✅ Implemented Security Controls
+
+- Password protection using **SHA-256 hashing**
+- Hidden password input using `getpass`
+- Strict validation for deposit and withdrawal inputs
+- Controlled session management using authenticated user state
+- Audit logging for user actions and transactions
+- Robust error handling using try–except blocks
+
+---
+
+## 📊 Security Comparison Summary
+
+| Area | Insecure Version | Secure Version |
+|----|----|----|
+Authentication | Plaintext | SHA-256 hashing |
+Password Input | Visible | Hidden (`getpass`) |
+Input Validation | None | Strict validation |
+Logging | ❌ | ✅ Audit logs |
+Error Handling | ❌ | ✅ Try–Except |
+Session Control | ❌ | ✅ Controlled user state |
+
+---
+
+## 🧠 Tools & Methodologies Used
+
+- **Manual Code Review** – Line-by-line inspection to detect insecure logic
+- **Bandit (Python Static Analyzer)** – Automated detection of security issues
+- **OWASP Secure Coding Guidelines** – Reference for secure development standards
+
+---
+
+## ▶️ How to Run the Project
+
+### Prerequisites
+- Python 3.x installed
+
+### Run the Insecure Version
+```bash
+python insecure_bank.py
+python secure_bank.py
+
+---
+## 👨‍💻 Author
+
+**Venkat Pranav**  
+B.E. Computer Science & Cybersecurity  
+Secure Coding | Application Security | Python
+
