@@ -1,40 +1,66 @@
 # insecure_bank.py
+# ❌ DO NOT USE IN PRODUCTION
 
 users = {
-    "venkat": {"password": "1234", "balance": 5000}
+    "admin": "admin123",
+    "user1": "password"
 }
 
+balance = 5000
+
 def login():
+    print("=== Insecure Bank Login ===")
     username = input("Username: ")
     password = input("Password: ")
 
-    if username in users and users[username]["password"] == password:
-        print("Login success")
-        return username
+    # ❌ Plaintext password comparison
+    if username in users and users[username] == password:
+        print("Login successful!")
+        return True
     else:
-        print("Login failed")
-        return None
+        print("Invalid credentials")
+        return False
 
-def menu(user):
-    while True:
-        print("1. Balance")
-        print("2. Deposit")
-        print("3. Withdraw")
-        print("4. Logout")
+def show_balance():
+    # ❌ No authentication check
+    print(f"Your balance is ₹{balance}")
 
-        choice = input("Choice: ")
+def deposit():
+    global balance
+    amount = int(input("Enter amount to deposit: "))
+    balance += amount
+    print("Deposit successful")
 
-        if choice == "1":
-            print("Balance:", users[user]["balance"])
-        elif choice == "2":
-            amt = int(input("Amount: "))
-            users[user]["balance"] += amt
-        elif choice == "3":
-            amt = int(input("Amount: "))
-            users[user]["balance"] -= amt
-        elif choice == "4":
-            break
+def withdraw():
+    global balance
+    amount = int(input("Enter amount to withdraw: "))
 
-user = login()
-if user:
-    menu(user)
+    # ❌ No proper validation
+    if amount <= balance:
+        balance -= amount
+        print("Withdrawal successful")
+    else:
+        print("Insufficient balance")
+
+def main():
+    if login():
+        while True:
+            print("\n1. Show Balance")
+            print("2. Deposit")
+            print("3. Withdraw")
+            print("4. Exit")
+
+            choice = input("Choose option: ")
+
+            if choice == "1":
+                show_balance()
+            elif choice == "2":
+                deposit()
+            elif choice == "3":
+                withdraw()
+            elif choice == "4":
+                break
+            else:
+                print("Invalid choice")
+
+main()
